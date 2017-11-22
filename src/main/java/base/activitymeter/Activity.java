@@ -12,14 +12,14 @@ public class Activity {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String text;
-    private String tags;
+    private Tag tag;
     private String title;
 
     public Activity (){};
 
-    public Activity(String text, String tags, String title) {
+    public Activity(String text, String tagname, String title) {
         this.text = text;
-        this.tags = tags;
+        this.tag = new Tag(tagname);
         this.title = title;
     }
 
