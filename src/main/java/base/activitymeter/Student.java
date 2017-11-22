@@ -9,5 +9,8 @@ package base.activitymeter;
  * Software Oracle Java SE JDK 1.8.0, Windows 10 x86_64
  * Hardware: Intel i5-6200U CPU 2.3GHz, 8GB RAM
  */
-public class Student {
+public class Student extends Benutzer {
+
+
+
 }

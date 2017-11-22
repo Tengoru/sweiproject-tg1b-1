@@ -38,13 +38,13 @@ public class Activity {
     public void setText(String text) {
         this.text = text;
     }
-    
-    public String getTags() {
-      return tags;
+
+    public Tag getTag() {
+        return tag;
     }
 
-    public void setTags(String tags) {
-      this.tags = tags;
+    public void setTag(Tag tag) {
+        this.tag = tag;
     }
 
     public String getTitle() {
