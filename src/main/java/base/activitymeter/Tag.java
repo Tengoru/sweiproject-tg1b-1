@@ -10,4 +10,20 @@ package base.activitymeter;
  * Hardware: Intel i5-6200U CPU 2.3GHz, 8GB RAM
  */
 public class Tag {
+
+    private String name;
+    private int nummer;
+
+    public Tag(String name) {
+        this.name = name;
+        this.nummer += nummer;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getNummer() {
+        return nummer;
+    }
 }
