@@ -14,6 +14,7 @@ public class Activity {
     private String text;
     private Tag tag;
     private String title;
+   // private Set<Data> details;
 
     public Activity (){};
 
@@ -21,6 +22,7 @@ public class Activity {
         this.text = text;
         this.tag = new Tag(tagname);
         this.title = title;
+        // initialisierung von details fehlt noch
     }
 
     public Long getId() {

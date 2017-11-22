@@ -6,7 +6,7 @@
 	<groupId>org.springframework</groupId>
 	<artifactId>activity-meter</artifactId>
 	<version>0.1.0</version>
-	<name>activity-meter (sweiproject-example)</name>
+	<name>activity-meter (sweiproject-sweiprject-tg1b1-1)</name>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

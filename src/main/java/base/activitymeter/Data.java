@@ -10,4 +10,6 @@ package base.activitymeter;
  * Hardware: Intel i5-6200U CPU 2.3GHz, 8GB RAM
  */
 public class Data {
+
+    Data(){}
 }
