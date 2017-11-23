@@ -9,7 +9,7 @@ install:
 
   - mvn -N io.takari:maven:wrapper
 
-  - ./mvnw install -Pdev
+  - ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V -Pdev
 
 addons:
 
