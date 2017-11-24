@@ -12,18 +12,15 @@ public class Activity {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String text;
-    private Tag tag;
+    private String tags;
     private String title;
-   // private Set<Data> details;
-    //test
 
     public Activity (){};
 
-    public Activity(String text, String tagname, String title) {
+    public Activity(String text, String tags, String title) {
         this.text = text;
-        this.tag = new Tag(tagname);
+        this.tags = tags;
         this.title = title;
-        // initialisierung von details fehlt noch
     }
 
     public Long getId() {
@@ -41,13 +38,13 @@ public class Activity {
     public void setText(String text) {
         this.text = text;
     }
-
-    public Tag getTag() {
-        return tag;
+    
+    public String getTags() {
+      return tags;
     }
 
-    public void setTag(Tag tag) {
-        this.tag = tag;
+    public void setTags(String tags) {
+      this.tags = tags;
     }
 
     public String getTitle() {

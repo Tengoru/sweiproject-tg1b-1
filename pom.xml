@@ -4,9 +4,9 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.springframework</groupId>
-	<artifactId>activity-meter_tg1b-1</artifactId>
+	<artifactId>activity-meter</artifactId>
 	<version>0.1.0</version>
-	<name>activity-meter_tg1b-1 (sweiproject-sweiprject-tg1b1-1)</name>
+	<name>activity-meter (sweiproject-example)</name>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
