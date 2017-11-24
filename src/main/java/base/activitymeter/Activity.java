@@ -15,6 +15,7 @@ public class Activity {
     private Tag tag;
     private String title;
    // private Set<Data> details;
+    //test
 
     public Activity (){};
 
