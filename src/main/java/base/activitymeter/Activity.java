@@ -14,13 +14,15 @@ public class Activity {
     private String text;
     private String tags;
     private String title;
+    private String date;
 
     public Activity (){};
 
-    public Activity(String text, String tags, String title) {
+    public Activity(String text, String tags, String title,String date) {
         this.text = text;
         this.tags = tags;
         this.title = title;
+        this.date = date;
     }
 
     public Long getId() {
@@ -53,5 +55,13 @@ public class Activity {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

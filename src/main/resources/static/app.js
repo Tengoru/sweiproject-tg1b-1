@@ -50,14 +50,16 @@ app.controller('ActivityCtrl', function ($scope, $http, $dialog) {
 
 
   	// -------------------
+  	/*
   	var filterDialogOptions = {
     	controller: 'FilterActivityCtrl',
     	templateUrl: './activityFilter.html'
   	};
-
+*/
   	$scope.filter = function(){
   		loadFilteredActivities($scope, $http, $scope.tag);
   	};
+
   	// ------------------
 
   	var editDialogOptions = {
@@ -83,6 +85,9 @@ app.controller('ActivityCtrl', function ($scope, $http, $dialog) {
   		// todo handle error
 	};
 });
+
+
+
 app.controller('AddActivityCtrl', function($scope, $http, dialog){
 
   	$scope.save = function() {
@@ -92,7 +97,8 @@ app.controller('AddActivityCtrl', function($scope, $http, dialog){
        	data: {
   				text: $scope.activity.text,
   				tags: $scope.activity.tags,
-  				title: $scope.activity.title
+  				title: $scope.activity.title,
+  				date: $scope.activity.date
 			  }
 		}
 
@@ -117,7 +123,8 @@ app.controller('EditActivityCtrl', function ($scope, $http, activity, dialog) {
        	data: {
   				text: $scope.activity.text,
   				tags: $scope.activity.tags,
-  				title: $scope.activity.title
+  				title: $scope.activity.title,
+  				date: $scope.activity.date
 			  }
 		}
 
@@ -134,10 +141,13 @@ app.controller('EditActivityCtrl', function ($scope, $http, activity, dialog) {
     	dialog.close();
   	};
 });
+
+/*
 app.controller('FilterActivityCtrl', function ($scope, $http, dialog) {
 
+
   	  $scope.filter = function(){
-  	  	 /*loadFilteredActivities($scope, $http, $scope.tag);*/
+  	  	 //loadFilteredActivities($scope, $http, $scope.tag);
   	     dialog.close($scope.tag);
   	  };
   	  $scope.close = function(){
@@ -145,3 +155,4 @@ app.controller('FilterActivityCtrl', function ($scope, $http, dialog) {
 	  };
 
 });
+*/
