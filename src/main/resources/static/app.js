@@ -1,32 +1,30 @@
 var app = angular.module('ActivityMeterApp', ['ui.bootstrap']);
 
-//app.config(function ($qProvider) {
-//    $qProvider.errorOnUnhandledRejections(false);
-//});
+// app.config(function ($qProvider) {
+// $qProvider.errorOnUnhandledRejections(false);
+// });
 
-function loadActivities ($scope, $http){
+		function loadActivities ($scope, $http){
      		$http({
             		 method : 'GET',
-            		 /*
-            		 url: (window.location.hostname === 'localhost' ?
-          				'http://localhost:8080/activity' :
-                         'https://activityexample.herokuapp.com/activity')
-                  */
-                  url: 'activity'
+            		 
+            		 url: 'activity'
 
          		}).then(function (response) {
           			 $scope.activities = response.data;
        		});
        	}
-       	function loadFilteredActivities ($scope, $http){
+       	function loadFilteredActivities ($scope, $http, tag){
              		$http({
                     		 method : 'GET',
                     		 /*
-                    		 url: (window.location.hostname === 'localhost' ?
-                  				'http://localhost:8080/activity' :
-                                 'https://activityexample.herokuapp.com/activity')
-                          */
-                          url: 'activity/{tag}'
+								 * url: (window.location.hostname ===
+								 * 'localhost' ?
+								 * 'http://localhost:8080/activity' :
+								 * 'https://activityexample.herokuapp.com/activity')
+								 */
+                    		 url: 'activity/' + tag
+                    		 /* url: 'activity/{tag}' */
 
                  		}).then(function (response) {
                   			 $scope.activities = response.data;
@@ -44,25 +42,23 @@ app.controller('ActivityCtrl', function ($scope, $http, $dialog) {
     	templateUrl: './activityAdd.html'
   	};
 
-  	$scope.add = function(activity){
+  	$scope.add = function(){
     	$dialog.dialog(angular.extend(addDialogOptions, {})).open().then(function (){
     	    loadActivities($scope, $http);
         }) ;
   	};
 
 
-  	//-------------------
+  	// -------------------
   	var filterDialogOptions = {
     	controller: 'FilterActivityCtrl',
     	templateUrl: './activityFilter.html'
   	};
 
-  	$scope.filter = function(activity){
-    	$dialog.dialog(angular.extend(filterDialogOptions, {})).open().then(function (){
-    	    loadFilteredActivities($scope, $http);
-        });
+  	$scope.filter = function(){
+  		loadFilteredActivities($scope, $http, $scope.tag);
   	};
-  	//------------------
+  	// ------------------
 
   	var editDialogOptions = {
 	    controller: 'EditActivityCtrl',
@@ -84,12 +80,12 @@ app.controller('ActivityCtrl', function ($scope, $http, $dialog) {
   		$http(deleteRequest).then(function() {
 			loadActivities($scope, $http);
 		});
-  		//todo handle error
+  		// todo handle error
 	};
 });
 app.controller('AddActivityCtrl', function($scope, $http, dialog){
 
-  	$scope.save = function(Activity) {
+  	$scope.save = function() {
   		var postRequest = {
     	method : 'POST',
        	url: 'activity' ,
@@ -114,7 +110,7 @@ app.controller('AddActivityCtrl', function($scope, $http, dialog){
 app.controller('EditActivityCtrl', function ($scope, $http, activity, dialog) {
 
 	$scope.activity = activity;
-  	$scope.save = function($activity) {
+  	$scope.save = function() {
   	    var putRequest = {
     	method : 'PUT',
        	url: 'activity/' + $scope.activity.id,
@@ -128,7 +124,7 @@ app.controller('EditActivityCtrl', function ($scope, $http, activity, dialog) {
   		$http(putRequest).then(function (response) {
   		    $scope.activities = response.data;
   		}).then(function () {
-			//todo handle error
+			// todo handle error
 			$scope.close();
 		});
   	};
@@ -137,4 +133,15 @@ app.controller('EditActivityCtrl', function ($scope, $http, activity, dialog) {
   		loadActivities($scope, $http);
     	dialog.close();
   	};
+});
+app.controller('FilterActivityCtrl', function ($scope, $http, dialog) {
+
+  	  $scope.filter = function(){
+  	  	 /*loadFilteredActivities($scope, $http, $scope.tag);*/
+  	     dialog.close($scope.tag);
+  	  };
+  	  $scope.close = function(){
+	     dialog.close();
+	  };
+
 });
