@@ -18,6 +18,20 @@ function loadActivities ($scope, $http){
           			 $scope.activities = response.data;
        		});
        	}
+       	function loadFilteredActivities ($scope, $http){
+             		$http({
+                    		 method : 'GET',
+                    		 /*
+                    		 url: (window.location.hostname === 'localhost' ?
+                  				'http://localhost:8080/activity' :
+                                 'https://activityexample.herokuapp.com/activity')
+                          */
+                          url: 'activity/{tag}'
+
+                 		}).then(function (response) {
+                  			 $scope.activities = response.data;
+               		});
+               	}
 
 
 app.controller('ActivityCtrl', function ($scope, $http, $dialog) {
@@ -45,7 +59,7 @@ app.controller('ActivityCtrl', function ($scope, $http, $dialog) {
 
   	$scope.filter = function(activity){
     	$dialog.dialog(angular.extend(filterDialogOptions, {})).open().then(function (){
-    	    loadActivities($scope, $http);
+    	    loadFilteredActivities($scope, $http);
         });
   	};
   	//------------------
