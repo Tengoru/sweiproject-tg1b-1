@@ -7,8 +7,15 @@ var app = angular.module('ActivityMeterApp', ['ui.bootstrap']);
 		function loadActivities ($scope, $http){
      		$http({
             		 method : 'GET',
-            		 
-            		 url: 'activity'
+
+                      /*
+                     * url: (window.location.hostname ===
+                     * 'localhost' ?
+                     * 'http://localhost:8080/activity' :
+                     * 'https://activityexample.herokuapp.com/activity')
+                       */
+
+            		url: 'activity'
 
          		}).then(function (response) {
           			 $scope.activities = response.data;
@@ -17,12 +24,12 @@ var app = angular.module('ActivityMeterApp', ['ui.bootstrap']);
        	function loadFilteredActivities ($scope, $http, tag){
              		$http({
                     		 method : 'GET',
-                    		 /*
+                                    /*
 								 * url: (window.location.hostname ===
 								 * 'localhost' ?
 								 * 'http://localhost:8080/activity' :
 								 * 'https://activityexample.herokuapp.com/activity')
-								 */
+                                */
                     		 url: 'activity/' + tag
                     		 /* url: 'activity/{tag}' */
 

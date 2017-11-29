@@ -4,6 +4,7 @@ package base.activitymeter;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -42,16 +43,15 @@ public class ActivityControllerTest {
         }
 
         @Test
-        public void noEnty() throws Exception {
-            this.mockMvc.perform(get("/activity")).andDo(print()).andExpect(status().isOk())
-                    .andReturn().getResponse().getContentAsString().isEmpty();
+        public void noEntry() throws Exception {
+            this.mockMvc.perform(get("/activity")).andExpect(status().isOk()).andExpect(content().string("[]"));
         }
 
         @Test
         public void notEmpty() throws Exception {
             this.mockMvc.perform(post("/activity")
                     .content(testActivity1).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
-                    .andExpect(status().isOk()).andReturn().getResponse().getContentAsString().contains(testActivity1);
+                    .andExpect(status().isOk()).andExpect(content().string(testActivity1));
         }
 
         @Test
