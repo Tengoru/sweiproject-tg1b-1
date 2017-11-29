@@ -23,6 +23,9 @@ public class Activity {
         this.tags = tags;
         this.title = title;
         this.date = date;
+
+
+        
     }
 
     public Long getId() {
