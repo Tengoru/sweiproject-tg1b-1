@@ -1,5 +1,6 @@
 package base.activitymeter;
 
+<<<<<<< HEAD
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -20,6 +21,8 @@ import org.springframework.test.web.servlet.ResultMatcher;
 @SpringBootTest
 @AutoConfigureMockMvc
 
+=======
+>>>>>>> 1455b2bf78b9e3ab956c0d66bc942e4f35037d4a
 
 public class ActivityControllerTest {
 
