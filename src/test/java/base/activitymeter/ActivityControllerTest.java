@@ -1,6 +1,7 @@
 package base.activitymeter;
 
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -8,6 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import org.json.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 @RunWith(SpringRunner.class)
@@ -23,13 +27,14 @@ import org.springframework.test.web.servlet.ResultMatcher;
 @AutoConfigureMockMvc
 public class ActivityControllerTest {
 
+    //String jsonActivity1 = "{\"title\":\"Test\", \"start\":\"12.12.2012\", \"end\":\"14.12.2012\", \"category\":\"cat\", \"department\":\"Fakultät für Design\" ,\"tags\":\"tag\", \"text\":\"Ich bin ein Test\"}";
 
     String testActivity1 = "{\"id\":1,\"text\":\"text1\",\"tags\":\"tag1\",\"title\":\"title1\",\"date\":\"date1\"}";
-    String testActivity2 = "{\"id\":2,\"\"text\":\"text2\",\"tags\":\"tag2\",\"title\":\"title2\",\"date\":\"date2\"}";
-    String testActivity3 = "{\"id\":3,\"\"text\":\"text3\",\"tags\":\"tag3\",\"title\":\"title3\",\"date\":\"date3\"}";
-    String testActivity4 = "{\"id\":4,\"\"text\":\"text4\",\"tags\":\"tag1\",\"title\":\"title4\",\"date\":\"date4\"}";
-    String testActivity5 = "{\"id\":5,\"\"text\":\"text1\",\"tags\":\"tag1\",\"title\":\"title1\",\"date\":\"date1\"}";
-    String testActivity6 = "{\"id\":6,\"\"text\":\"text5\",\"tags\":\"tag1\",\"title\":\"title5\",\"date\":\"date5\"}";
+    String testActivity2 = "{\"id\":2,\"text\":\"text2\",\"tags\":\"tag2\",\"title\":\"title2\",\"date\":\"date2\"}";
+    String testActivity3 = "{\"id\":3,\"text\":\"text3\",\"tags\":\"tag3\",\"title\":\"title3\",\"date\":\"date3\"}";
+    String testActivity4 = "{\"id\":4,\"text\":\"text4\",\"tags\":\"tag1\",\"title\":\"title4\",\"date\":\"date4\"}";
+    String testActivity5 = "{\"id\":5,\"text\":\"text1\",\"tags\":\"tag1\",\"title\":\"title1\",\"date\":\"date1\"}";
+    String testActivity6 = "{\"id\":6,\"text\":\"text5\",\"tags\":\"tag1\",\"title\":\"title5\",\"date\":\"date5\"}";
 
 
         @Autowired
@@ -40,16 +45,22 @@ public class ActivityControllerTest {
             this.mockMvc.perform(get("/activity")).andDo(print()).andExpect(status().isOk());
         }
 
-//        @Test
-//        public void noEntry() throws Exception {
-//            this.mockMvc.perform(get("/activity")).andExpect(status().isOk()).andExpect(content().string("[]"));
-//        }
+        @Test
+        public void noEntry() throws Exception {
+            this.mockMvc.perform(get("/activity")).andExpect(status().isOk()).andExpect(content().string("[]"));
+        }
 
         @Test
         public void notEmpty() throws Exception {
+
+
             this.mockMvc.perform(post("/activity")
                     .content(testActivity1).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                     .andExpect(status().isOk()).andExpect(content().string(testActivity1));
+
+            int id = 1;
+
+            this.mockMvc.perform(delete("/activity/" + id )).andDo(print()).andExpect(status().isOk());
         }
 
 //        @Test
