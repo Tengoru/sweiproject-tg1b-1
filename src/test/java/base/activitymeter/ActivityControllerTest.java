@@ -1,15 +1,14 @@
 package base.activitymeter;
 
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,32 +35,51 @@ public class ActivityControllerTest {
     String testActivity5 = "{\"id\":5,\"text\":\"text1\",\"tags\":\"tag1\",\"title\":\"title1\",\"date\":\"date1\"}";
     String testActivity6 = "{\"id\":6,\"text\":\"text5\",\"tags\":\"tag1\",\"title\":\"title5\",\"date\":\"date5\"}";
 
+    @Autowired
+    private MockMvc mockMvc;
 
-        @Autowired
-        private MockMvc mockMvc;
+    @Test
+    public void statusOfServer() throws Exception {
+        this.mockMvc.perform(get("/activity")).andDo(print()).andExpect(status().isOk());
+    }
 
-        @Test
-        public void statusOfServer() throws Exception{
-            this.mockMvc.perform(get("/activity")).andDo(print()).andExpect(status().isOk());
-        }
+    @Test
+    public void noEntry() throws Exception {
+        this.mockMvc.perform(get("/activity")).andExpect(status().isOk()).andExpect(content().string("[]"));
+    }
 
-        @Test
-        public void noEntry() throws Exception {
-            this.mockMvc.perform(get("/activity")).andExpect(status().isOk()).andExpect(content().string("[]"));
-        }
-
-        @Test
-        public void notEmpty() throws Exception {
+    @Test
+    public void notEmpty() throws Exception {
 
 
-            this.mockMvc.perform(post("/activity")
-                    .content(testActivity1).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
-                    .andExpect(status().isOk()).andExpect(content().string(testActivity1));
+        this.mockMvc.perform(post("/activity")
+                .content(testActivity1).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk()).andExpect(content().string(testActivity1));
 
-            int id = 1;
+        int id = 1;
+        this.mockMvc.perform(delete("/activity/" + id)).andDo(print()).andExpect(status().isOk());
+    }
 
-            this.mockMvc.perform(delete("/activity/" + id )).andDo(print()).andExpect(status().isOk());
-        }
+    @Test
+    public void editTest() throws Exception {
+        //funktioniert nicht, da
+
+        this.mockMvc.perform(post("/activity")
+                .content(testActivity1).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON));
+        int id = 1;
+
+        JSONParser parser = new JSONParser();
+        org.json.simple.JSONObject cont = (org.json.simple.JSONObject) parser.parse(content().toString());
+
+
+        String testActivity1Edited = "{\"id\":1,\"text\":\"text2\",\"tags\":\"tag2\",\"title\":\"title2\",\"date\":\"date2\"}";
+        this.mockMvc.perform(put("/activity" + id).content(testActivity2).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON));
+        this.mockMvc.perform(get("/activity"));
+        String retrunedId= cont.get("id").toString();
+        System.out.println("HAAAAAAAAAAAAAAAAAAAAAAAAAAAALLLO " + retrunedId);
+
+        this.mockMvc.perform(delete("/activity/" + id));
+    }
 
 //        @Test
 //        public void manyEntries() throws Exception{
@@ -122,7 +140,7 @@ public class ActivityControllerTest {
 //                    .andExpect(jsonPath("$.content").value("Hello, Spring Community!"));
 //        }
 
-    }
+}
 
 
 
