@@ -55,6 +55,17 @@ app.controller('ActivityCtrl', function ($scope, $http, $dialog) {
         }) ;
   	};
 
+  	var detailsDialogOptions = {
+        	controller: 'DetailActivityCtrl',
+        	templateUrl: './activityDetail.html'
+      	};
+
+      	$scope.details = function(){
+        	$dialog.dialog(angular.extend(detailsDialogOptions, {})).open().then(function (){
+        	    loadActivities($scope, $http);
+            }) ;
+      	};
+
 
   	// -------------------
   	/*
@@ -66,6 +77,8 @@ app.controller('ActivityCtrl', function ($scope, $http, $dialog) {
   	$scope.filter = function(){
   		loadFilteredActivities($scope, $http, $scope.tag);
   	};
+
+
 
   	// ------------------
 
@@ -120,6 +133,31 @@ app.controller('AddActivityCtrl', function($scope, $http, dialog){
     	dialog.close(undefined);
   	};
 });
+
+app.controller('DetailActivityCtrl', function($scope, $http, dialog){
+
+  	$scope.save = function() {
+  		var postRequest = {
+    	method : 'GET',
+       	url: 'activity' ,
+       	data: {
+  				text: $scope.activity.text,
+
+			  }
+		}
+
+  		$http(getRequest).then(function (response) {
+  		    $scope.activities = response.data;
+  		}).then(function () {
+  			$scope.close();
+  		});
+  	};
+
+  	$scope.close = function(){;
+    	dialog.close(undefined);
+  	};
+});
+
 app.controller('EditActivityCtrl', function ($scope, $http, activity, dialog) {
 
 	$scope.activity = activity;

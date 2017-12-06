@@ -36,17 +36,17 @@ public class ActivityControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Test
+    /*@Test
     public void statusOfServer() throws Exception {
         this.mockMvc.perform(get("/activity")).andDo(print()).andExpect(status().isOk());
-    }
-
+    }*/
+/*
     @Test
     public void noEntry() throws Exception {
         this.mockMvc.perform(get("/activity")).andExpect(status().isOk()).andExpect(content().string("[]"));
-    }
+    }*/
 
-    @Test
+   /* @Test
     public void notEmpty() throws Exception {
 
 
@@ -56,7 +56,7 @@ public class ActivityControllerTest {
 
         int id = 1;
         this.mockMvc.perform(delete("/activity/" + id)).andDo(print()).andExpect(status().isOk());
-    }
+    }*/
 
 //    @Test
 //    public void editTest() throws Exception {
