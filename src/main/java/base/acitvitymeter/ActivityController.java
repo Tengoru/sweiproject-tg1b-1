@@ -20,7 +20,7 @@ public class ActivityController {
       return activities;
   }
 
-  //@RequestMapping(value ="{tags}", method = RequestMethod.GET)
+  /*//@RequestMapping(value ="{tags}", method = RequestMethod.GET)
     @GetMapping("{tags}")
   public ArrayList<Activity> listAllFilter(@PathVariable String tags) {
       ArrayList<Activity> activities = new ArrayList<>();
@@ -30,8 +30,8 @@ public class ActivityController {
               equals(tags)).forEach(activity -> activitiesFiltered.add(activity));
       return activitiesFiltered;
 
+}*/
 
-  }
   @GetMapping("{id}")
   public Activity find(@PathVariable Long id) {
       return activityRepository.findOne(id);

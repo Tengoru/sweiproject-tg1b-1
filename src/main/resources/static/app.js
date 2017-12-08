@@ -21,6 +21,26 @@ var app = angular.module('ActivityMeterApp', ['ui.bootstrap']);
           			 $scope.activities = response.data;
        		});
        	}
+
+       	function loadDetails ($scope, $http, id){
+             		$http({
+                    		 method : 'GET',
+
+                              /*
+                             * url: (window.location.hostname ===
+                             * 'localhost' ?
+                             * 'http://localhost:8080/activity' :
+                             * 'https://activityexample.herokuapp.com/activity')
+                               */
+
+                    		url: 'activity/details/' + id
+
+                 		}).then(function (response) {
+                  			 $scope.activities = response.data;
+               		});
+               	}
+
+
        	function loadFilteredActivities ($scope, $http, tag){
              		$http({
                     		 method : 'GET',
@@ -60,9 +80,9 @@ app.controller('ActivityCtrl', function ($scope, $http, $dialog) {
         	templateUrl: './activityDetail.html'
       	};
     $scope.details = function(activity){
-       	 	var activityToEdit = activity;
-        	$dialog.dialog(angular.extend(editDialogOptions, {resolve: {activity: angular.copy(activityToEdit)}})).open().then(function (){
-        	    loadActivities($scope, $http);
+       	 	var activityToShowDetails = activity;
+        	$dialog.dialog(angular.extend(detailsDialogOptions, {resolve: {activity: angular.copy(activityToShowDetails)}})).open().then(function (){
+        	    loadDetails($scope, $http);
             }) ;
       	};
 
@@ -125,26 +145,11 @@ app.controller('AddActivityCtrl', function($scope, $http, dialog){
 
 app.controller('DetailActivityCtrl', function ($scope, $http, activity, dialog) {
 
-	$scope.activity = activity;
-  	$scope.save = function() {
-  	    var putRequest = {
-    	method : 'PUT',
-       	url: 'activity/' + $scope.activity.id,
-       	data: {
-  				text: $scope.activity.text,
-  				tags: $scope.activity.tags,
-  				title: $scope.activity.title,
-  				date: $scope.activity.date
-			  }
-		}
+	//$scope.activity = activity;
+  	loadDetails($scope,$http);
 
-  		$http(putRequest).then(function (response) {
-  		    $scope.activities = response.data;
-  		}).then(function () {
-			// todo handle error
-			$scope.close();
-		});
-  	};
+
+
 
   	$scope.close = function(){
   		loadActivities($scope, $http);
