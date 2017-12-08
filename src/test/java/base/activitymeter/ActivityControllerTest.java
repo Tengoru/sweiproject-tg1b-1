@@ -174,7 +174,7 @@ public class ActivityControllerTest {
 //
     @Test
     public void filterEmptyList() throws Exception{
-        this.mockMvc.perform(get("/activity/tag")).andDo(print()).andExpect(status().isOk())
+        this.mockMvc.perform(get("/activity/filter/tag")).andDo(print()).andExpect(status().isOk())
                 .andReturn().getResponse().getContentAsString().isEmpty();
     }
 
