@@ -24,7 +24,7 @@ public class ActivityFilterController {
       ArrayList<Activity> activitiesFiltered = new ArrayList<>();
       activityRepository.findAll().forEach(activity -> activities.add(activity));
       activities.stream().filter(x->x.getTags().
-              equals(tags)).forEach(activity -> activitiesFiltered.add(activity));
+              contains(tags)).forEach(activity -> activitiesFiltered.add(activity));
       return activitiesFiltered;
     }
 
