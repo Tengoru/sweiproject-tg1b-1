@@ -30,7 +30,7 @@ var app = angular.module('ActivityMeterApp', ['ui.bootstrap']);
 								 * 'http://localhost:8080/activity' :
 								 * 'https://activityexample.herokuapp.com/activity')
                                 */
-                    		 url: 'activity/' + tag
+                    		 url: 'activity/filter/'+ tag
                     		 /* url: 'activity/{tag}' */
 
                  		}).then(function (response) {
