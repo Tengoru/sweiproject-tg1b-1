@@ -21,26 +21,6 @@ var app = angular.module('ActivityMeterApp', ['ui.bootstrap']);
           			 $scope.activities = response.data;
        		});
        	}
-
-       	function loadDetails ($scope, $http, id){
-             		$http({
-                    		 method : 'GET',
-
-                              /*
-                             * url: (window.location.hostname ===
-                             * 'localhost' ?
-                             * 'http://localhost:8080/activity' :
-                             * 'https://activityexample.herokuapp.com/activity')
-                               */
-
-                    		url: 'activity/details/' + id
-
-                 		}).then(function (response) {
-                  			 $scope.activities = response.data;
-               		});
-               	}
-
-
        	function loadFilteredActivities ($scope, $http, tag){
              		$http({
                     		 method : 'GET',
@@ -57,6 +37,25 @@ var app = angular.module('ActivityMeterApp', ['ui.bootstrap']);
                   			 $scope.activities = response.data;
                		});
                	}
+
+//               	function loadDetailsOfActivitiy ($scope, $http, id){
+//                             		$http({
+//                                    		 method : 'GET',
+//                                                    /*
+//                								 * url: (window.location.hostname ===
+//                								 * 'localhost' ?
+//                								 * 'http://localhost:8080/activity' :
+//                								 * 'https://activityexample.herokuapp.com/activity')
+//                                                */
+//                                    		 url: 'activity/' + id
+//                                    		 /* url: 'activity/{tag}' */
+//
+//                                 		}).then(function (response) {
+//                                  			 $scope.activities = response.data;
+//                               		});
+//                               	}
+
+
 
 
 app.controller('ActivityCtrl', function ($scope, $http, $dialog) {
@@ -82,7 +81,7 @@ app.controller('ActivityCtrl', function ($scope, $http, $dialog) {
     $scope.details = function(activity){
        	 	var activityToShowDetails = activity;
         	$dialog.dialog(angular.extend(detailsDialogOptions, {resolve: {activity: angular.copy(activityToShowDetails)}})).open().then(function (){
-        	    loadDetails($scope, $http);
+        	    loadActivities($scope, $http);
             }) ;
       	};
 
@@ -144,13 +143,15 @@ app.controller('AddActivityCtrl', function($scope, $http, dialog){
 });
 
 app.controller('DetailActivityCtrl', function ($scope, $http, activity, dialog) {
+    $scope.activity = activity;
 
-	//$scope.activity = activity;
-  	loadDetails($scope,$http);
+	$http({
+              method: 'GET',
+              url: 'activity/' + $scope.activity.id
 
-
-
-
+              }).then(function (response) {
+      		    $scope.activities = response.data;
+    });
   	$scope.close = function(){
   		loadActivities($scope, $http);
     	dialog.close();
