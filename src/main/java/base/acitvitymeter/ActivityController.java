@@ -32,10 +32,10 @@ public class ActivityController {
 
 
   }
-//  @GetMapping("{id}")
-//  public Activity find(@PathVariable Long id) {
-//      return activityRepository.findOne(id);
-//  }
+  @GetMapping("{id}")
+  public Activity find(@PathVariable Long id) {
+      return activityRepository.findOne(id);
+  }
 
   @PostMapping
   public Activity create(@RequestBody Activity input) {

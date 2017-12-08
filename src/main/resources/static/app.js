@@ -59,28 +59,17 @@ app.controller('ActivityCtrl', function ($scope, $http, $dialog) {
         	controller: 'DetailActivityCtrl',
         	templateUrl: './activityDetail.html'
       	};
-
-      	$scope.details = function(){
-        	$dialog.dialog(angular.extend(detailsDialogOptions, {})).open().then(function (){
+    $scope.details = function(activity){
+       	 	var activityToEdit = activity;
+        	$dialog.dialog(angular.extend(editDialogOptions, {resolve: {activity: angular.copy(activityToEdit)}})).open().then(function (){
         	    loadActivities($scope, $http);
             }) ;
       	};
 
 
-  	// -------------------
-  	/*
-  	var filterDialogOptions = {
-    	controller: 'FilterActivityCtrl',
-    	templateUrl: './activityFilter.html'
-  	};
-*/
   	$scope.filter = function(){
   		loadFilteredActivities($scope, $http, $scope.tag);
   	};
-
-
-
-  	// ------------------
 
   	var editDialogOptions = {
 	    controller: 'EditActivityCtrl',
@@ -134,27 +123,32 @@ app.controller('AddActivityCtrl', function($scope, $http, dialog){
   	};
 });
 
-app.controller('DetailActivityCtrl', function($scope, $http, dialog){
+app.controller('DetailActivityCtrl', function ($scope, $http, activity, dialog) {
 
+	$scope.activity = activity;
   	$scope.save = function() {
-  		var postRequest = {
-    	method : 'GET',
-       	url: 'activity' ,
+  	    var putRequest = {
+    	method : 'PUT',
+       	url: 'activity/' + $scope.activity.id,
        	data: {
   				text: $scope.activity.text,
-
+  				tags: $scope.activity.tags,
+  				title: $scope.activity.title,
+  				date: $scope.activity.date
 			  }
 		}
 
-  		$http(getRequest).then(function (response) {
+  		$http(putRequest).then(function (response) {
   		    $scope.activities = response.data;
   		}).then(function () {
-  			$scope.close();
-  		});
+			// todo handle error
+			$scope.close();
+		});
   	};
 
-  	$scope.close = function(){;
-    	dialog.close(undefined);
+  	$scope.close = function(){
+  		loadActivities($scope, $http);
+    	dialog.close();
   	};
 });
 
