@@ -21,17 +21,17 @@ public class ActivityController {
   }
 
   //@RequestMapping(value ="{tags}", method = RequestMethod.GET)
-    @GetMapping("{tags}")
-  public ArrayList<Activity> listAllFilter(@PathVariable String tags) {
-      ArrayList<Activity> activities = new ArrayList<>();
-      ArrayList<Activity> activitiesFiltered = new ArrayList<>();
-      activityRepository.findAll().forEach(activity -> activities.add(activity));
-      activities.stream().filter(x->x.getTags().
-              equals(tags)).forEach(activity -> activitiesFiltered.add(activity));
-      return activitiesFiltered;
+//    @GetMapping("{tags}")
+//  public ArrayList<Activity> listAllFilter(@PathVariable String tags) {
+//      ArrayList<Activity> activities = new ArrayList<>();
+//      ArrayList<Activity> activitiesFiltered = new ArrayList<>();
+//      activityRepository.findAll().forEach(activity -> activities.add(activity));
+//      activities.stream().filter(x->x.getTags().
+//              equals(tags)).forEach(activity -> activitiesFiltered.add(activity));
+//      return activitiesFiltered;
 
 
-  }
+//  }
   @GetMapping("{id}")
   public Activity find(@PathVariable Long id) {
       return activityRepository.findOne(id);
