@@ -92,7 +92,7 @@ app.controller('ActivityCtrl', function ($scope, $http, $dialog) {
 
   	var editDialogOptions = {
 	    controller: 'EditActivityCtrl',
-	    templateUrl: './activityEdit.html',
+	    templateUrl: './activityEdit.html'
 	};
   	$scope.edit = function(activity){
    	 	var activityToEdit = activity;
