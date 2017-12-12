@@ -21,21 +21,22 @@ var app = angular.module('ActivityMeterApp', ['ui.bootstrap']);
           			 $scope.activities = response.data;
        		});
        	}
-       	function loadFilteredActivities ($scope, $http, tag){
-             		$http({
-                    		 method : 'GET',
-                                    /*
-								 * url: (window.location.hostname ===
-								 * 'localhost' ?
-								 * 'http://localhost:8080/activity' :
-								 * 'https://activityexample.herokuapp.com/activity')
-                                */
-                    		 url: 'activity/filter/'+ tag
-                    		 /* url: 'activity/{tag}' */
+       	function loadFilteredActivities ($scope, $http, tag) {
+			$http({
+                method: 'GET',
+                /*
+             * url: (window.location.hostname ===
+             * 'localhost' ?
+             * 'http://localhost:8080/activity' :
+             * 'https://activityexample.herokuapp.com/activity')
+            */
+                url: 'activity/filter/' + tag
+                /* url: 'activity/{tag}' */
 
-                 		}).then(function (response) {
-                  			 $scope.activities = response.data;
-               		});
+            }).then(function (response) {
+                $scope.activities = response.data;
+            });
+
                	}
 
 //               	function loadDetailsOfActivitiy ($scope, $http, id){
@@ -87,7 +88,10 @@ app.controller('ActivityCtrl', function ($scope, $http, $dialog) {
 
 
   	$scope.filter = function(){
-  		loadFilteredActivities($scope, $http, $scope.tag);
+  		if($scope.tag.length==0)
+  			loadActivities($scope,$http);
+  		else
+        loadFilteredActivities($scope, $http, $scope.tag);
   	};
 
   	var editDialogOptions = {
