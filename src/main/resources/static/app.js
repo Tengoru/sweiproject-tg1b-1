@@ -132,7 +132,7 @@ app.controller('AddActivityCtrl', function($scope, $http, dialog){
   				title: $scope.activity.title,
   				date: $scope.activity.date
 			  }
-		}
+		};
 
   		$http(postRequest).then(function (response) {
   		    $scope.activities = response.data;
@@ -141,7 +141,7 @@ app.controller('AddActivityCtrl', function($scope, $http, dialog){
   		});
   	};
 
-  	$scope.close = function(){;
+  	$scope.close = function(){
     	dialog.close(undefined);
   	};
 });
@@ -175,7 +175,7 @@ app.controller('EditActivityCtrl', function ($scope, $http, activity, dialog) {
   				title: $scope.activity.title,
   				date: $scope.activity.date
 			  }
-		}
+		};
 
   		$http(putRequest).then(function (response) {
   		    $scope.activities = response.data;
