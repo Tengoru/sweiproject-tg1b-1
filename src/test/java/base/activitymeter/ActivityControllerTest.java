@@ -114,137 +114,188 @@ public class ActivityControllerTest {
     }
 
     @Test
-    public void notEmpty() throws Exception {
-
-        MockHttpServletResponse response1 = mockMvc
-                .perform(post("/activity")
-                        .content(testActivity1)
-                        .contentType("application/json"))
-                .andExpect(status().isOk()).andReturn().getResponse();
-
-        char id1 = response1.getContentAsString().charAt(6);
-
-        String result1 = testActivity1.substring(1);
-        this.mockMvc.perform(get("/activity")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string("["+idTemplate+id1+","+result1+"]"));
-
-
-        mockMvc.perform(delete("/activity/" + id1)).andExpect(status().isOk());
-
-    }
-
-    @Test
-    public void postManyTest() throws Exception {
-        MockHttpServletResponse response1 = mockMvc
-                .perform(post("/activity")
-                        .content(testActivity1)
-                        .contentType("application/json"))
-                .andExpect(status().isOk()).andReturn().getResponse();
-        MockHttpServletResponse response2 = mockMvc
-                .perform(post("/activity")
-                        .content(testActivity2)
-                        .contentType("application/json"))
-                .andExpect(status().isOk()).andReturn().getResponse();
-
-        char id1 = response1.getContentAsString().charAt(6);
-        char id2 = response2.getContentAsString().charAt(6);
-        mockMvc.perform(delete("/activity/" + id1)).andExpect(status().isOk());
-        mockMvc.perform(delete("/activity/" + id2)).andExpect(status().isOk());
-    }
-
-    //        @Test
-//        public void rightNumberOfEntries() throws Exception{
-//            int lengthOfContent = (testActivity1+testActivity2+testActivity3).length();
-//            this.mockMvc.perform(post("/activity")
-//                    .content(testActivity1+testActivity2+testActivity3).contentType(MediaType.APPLICATION_JSON)
-//                    .accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn()
-//                    .getResponse().getContentAsString().length();
-//
-//        }
-
-    @Test
     public void filterEmptyList() throws Exception{
         this.mockMvc.perform(get("/activity/filter/tag")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string("[]"));
     }
 
     @Test
+    public void notEmpty() throws Exception {
+
+        MvcResult response = this.mockMvc.perform(post("/activity")
+                .content(testActivity1)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+                .andReturn();
+
+        String content = response.getResponse().getContentAsString();
+        JSONObject obj = new JSONObject(content);
+        int id1 = obj.getInt("id");
+
+
+        String result1 = testActivity1.substring(1);
+
+        this.mockMvc.perform(get("/activity")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string("["+idTemplate+id1+","+result1+"]"));
+
+
+        mockMvc.perform(delete("/activity/" + id1));
+
+    }
+
+    @Test
+    public void postManyTest() throws Exception {
+        MvcResult response1 = this.mockMvc.perform(post("/activity")
+                .content(testActivity1)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+                .andReturn();
+        MvcResult response2 = this.mockMvc.perform(post("/activity")
+                .content(testActivity2)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+                .andReturn();
+
+        String content1 = response1.getResponse().getContentAsString();
+        JSONObject obj1 = new JSONObject(content1);
+        int id1 = obj1.getInt("id");
+        String content2 = response2.getResponse().getContentAsString();
+        JSONObject obj2 = new JSONObject(content2);
+        int id2 = obj2.getInt("id");
+
+
+        mockMvc.perform(delete("/activity/" + id1)).andExpect(status().isOk());
+        mockMvc.perform(delete("/activity/" + id2)).andExpect(status().isOk());
+    }
+
+
+    @Test
     public void askedForTagNotInTheList() throws Exception {
-        MockHttpServletResponse response1 = mockMvc
-                .perform(post("/activity")
-                        .content(testActivity1)
-                        .contentType("application/json"))
-                .andExpect(status().isOk()).andReturn().getResponse();
+        MvcResult response1 = this.mockMvc.perform(post("/activity")
+                .content(testActivity1)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+                .andReturn();
+
+        String content1 = response1.getResponse().getContentAsString();
+        JSONObject obj1 = new JSONObject(content1);
+        int id1 = obj1.getInt("id");
 
         this.mockMvc.perform(get("/activity/filter/nottest1")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string("[]"));
 
-        char id1 = response1.getContentAsString().charAt(6);
-        mockMvc.perform(delete("/activity/" + id1));
+
+        mockMvc.perform(delete("/activity/" + id1)).andExpect(status().isOk());
     }
 
-//    @Test
-//    public void filterTagWhichIsOnceInTheListTest() throws Exception {
-//        this.mockMvc.perform((post("/activity")
-//                .content(testActivity1).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)))
-//                .andDo(print()).andExpect(status().isOk());
-//        this.mockMvc.perform((post("/activity")
-//                .content(testActivity2).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)))
-//                .andDo(print()).andExpect(status().isOk());
-//        this.mockMvc.perform((post("/activity")
-//                .content(testActivity3).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)))
-//                .andDo(print()).andExpect(status().isOk());
-//
-//        this.mockMvc.perform(get("/activity/filter/tag1")).andDo(print()).andExpect(status().isOk())
-//                .andExpect(content().string("["+testActivity1+"]"));
-//
-//        int id1 = 1;
-//        this.mockMvc.perform(delete("/activity/" + id1)).andDo(print()).andExpect(status().isOk());
-//        int id2 = 2;
-//        this.mockMvc.perform(delete("/activity/" + id2)).andDo(print()).andExpect(status().isOk());
-//        int id3 = 3;
-//        this.mockMvc.perform(delete("/activity/" + id3)).andDo(print()).andExpect(status().isOk());
-//
-//    }
-//
-//
-//    @Test
-//    public void filterTagWhichIsSeveralTimesInTheListTest() throws Exception {
-//        this.mockMvc.perform((post("/activity")
-//                .content(testActivity1).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)))
-//                .andDo(print()).andExpect(status().isOk());
-//        this.mockMvc.perform((post("/activity")
-//                .content(testActivity2).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)))
-//                .andDo(print()).andExpect(status().isOk());
-//        this.mockMvc.perform((post("/activity")
-//                .content(testActivity3).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)))
-//                .andDo(print()).andExpect(status().isOk());
-//        this.mockMvc.perform((post("/activity")
-//                .content(testActivity4).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)))
-//                .andDo(print()).andExpect(status().isOk());
-//        this.mockMvc.perform((post("/activity")
-//                .content(testActivity5).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)))
-//                .andDo(print()).andExpect(status().isOk());
-//
-//        this.mockMvc.perform(get("/activity/filter/tag1")).andDo(print()).andExpect(status().isOk())
-//                .andExpect(content().string("["+testActivity1+","+testActivity4+","+testActivity5+"]"));
-//
-//        int id1 = 1;
-//        this.mockMvc.perform(delete("/activity/" + id1)).andDo(print()).andExpect(status().isOk());
-//        int id2 = 2;
-//        this.mockMvc.perform(delete("/activity/" + id2)).andDo(print()).andExpect(status().isOk());
-//        int id3 = 3;
-//        this.mockMvc.perform(delete("/activity/" + id3)).andDo(print()).andExpect(status().isOk());
-//        int id4 = 4;
-//        this.mockMvc.perform(delete("/activity/" + id4)).andDo(print()).andExpect(status().isOk());
-//        int id5 = 5;
-//        this.mockMvc.perform(delete("/activity/" + id5)).andDo(print()).andExpect(status().isOk());
-//
-//
-//
-//
-//
-//    }
+    @Test
+    public void filterTagWhichIsOnceInTheListTest() throws Exception {
+        MvcResult response1 = this.mockMvc.perform(post("/activity")
+                .content(testActivity1)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+                .andReturn();
+        MvcResult response2 = this.mockMvc.perform(post("/activity")
+                .content(testActivity2)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+                .andReturn();
+        MvcResult response3 = this.mockMvc.perform(post("/activity")
+                .content(testActivity3)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+                .andReturn();
+
+        String content1 = response1.getResponse().getContentAsString();
+        JSONObject obj1 = new JSONObject(content1);
+        int id1 = obj1.getInt("id");
+        String content2 = response2.getResponse().getContentAsString();
+        JSONObject obj2 = new JSONObject(content2);
+        int id2 = obj2.getInt("id");
+        String content3 = response3.getResponse().getContentAsString();
+        JSONObject obj3 = new JSONObject(content3);
+        int id3 = obj3.getInt("id");
+
+
+        String result1 = testActivity1.substring(1);
+
+        this.mockMvc.perform(get("/activity/filter/tag1")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string("["+idTemplate+id1+","+result1+"]"));
+
+
+        mockMvc.perform(delete("/activity/" + id1)).andExpect(status().isOk());
+        mockMvc.perform(delete("/activity/" + id2)).andExpect(status().isOk());
+        mockMvc.perform(delete("/activity/" + id3)).andExpect(status().isOk());
+
+    }
+
+
+    @Test
+    public void filterTagWhichIsSeveralTimesInTheListTest() throws Exception {
+
+        MvcResult response1 = this.mockMvc.perform(post("/activity")
+                .content(testActivity1)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+                .andReturn();
+        MvcResult response2 = this.mockMvc.perform(post("/activity")
+                .content(testActivity2)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+                .andReturn();
+        MvcResult response3 = this.mockMvc.perform(post("/activity")
+                .content(testActivity3)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+                .andReturn();
+        MvcResult response4 = this.mockMvc.perform(post("/activity")
+                .content(testActivity4)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+                .andReturn();
+        MvcResult response5 = this.mockMvc.perform(post("/activity")
+                .content(testActivity5)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+                .andReturn();
+
+        String content1 = response1.getResponse().getContentAsString();
+        JSONObject obj1 = new JSONObject(content1);
+        int id1 = obj1.getInt("id");
+        String content2 = response2.getResponse().getContentAsString();
+        JSONObject obj2 = new JSONObject(content2);
+        int id2 = obj2.getInt("id");
+        String content3 = response3.getResponse().getContentAsString();
+        JSONObject obj3 = new JSONObject(content3);
+        int id3 = obj3.getInt("id");
+        String content4 = response4.getResponse().getContentAsString();
+        JSONObject obj4 = new JSONObject(content4);
+        int id4 = obj4.getInt("id");
+        String content5 = response5.getResponse().getContentAsString();
+        JSONObject obj5 = new JSONObject(content5);
+        int id5 = obj5.getInt("id");
+
+
+
+        String result1 = testActivity1.substring(1);
+        String result4 = testActivity4.substring(1);
+        String result5 = testActivity5.substring(1);
+
+
+        this.mockMvc.perform(get("/activity/filter/tag1")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content()
+            .string("["+idTemplate+id1+","+result1+","+idTemplate+id4+","+result4+","+idTemplate+id5+","+result5+"]"));
+
+
+        mockMvc.perform(delete("/activity/" + id1)).andExpect(status().isOk());
+        mockMvc.perform(delete("/activity/" + id2)).andExpect(status().isOk());
+        mockMvc.perform(delete("/activity/" + id3)).andExpect(status().isOk());
+        mockMvc.perform(delete("/activity/" + id4)).andExpect(status().isOk());
+        mockMvc.perform(delete("/activity/" + id5)).andExpect(status().isOk());
+
+
+
+    }
 
         @Test
         public void paramGreetingShouldReturnTailoredMessage() throws Exception {
