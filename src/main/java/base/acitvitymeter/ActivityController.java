@@ -20,18 +20,6 @@ public class ActivityController {
       return activities;
   }
 
-  //@RequestMapping(value ="{tags}", method = RequestMethod.GET)
-//    @GetMapping("{tags}")
-//  public ArrayList<Activity> listAllFilter(@PathVariable String tags) {
-//      ArrayList<Activity> activities = new ArrayList<>();
-//      ArrayList<Activity> activitiesFiltered = new ArrayList<>();
-//      activityRepository.findAll().forEach(activity -> activities.add(activity));
-//      activities.stream().filter(x->x.getTags().
-//              equals(tags)).forEach(activity -> activitiesFiltered.add(activity));
-//      return activitiesFiltered;
-
-
-//  }
   @GetMapping("{id}")
   public Activity find(@PathVariable Long id) {
       return activityRepository.findOne(id);
@@ -47,18 +35,18 @@ public class ActivityController {
       activityRepository.delete(id);
   }
 
-  @PutMapping("{id}")
-  public Activity update(@PathVariable Long id, @RequestBody Activity input) {
-      Activity activity = activityRepository.findOne(id);
-      if (activity == null) {
-          return null;
-      } else {
-          activity.setText(input.getText());
-          activity.setTags(input.getTags());
-          activity.setTitle(input.getTitle());
-          activity.setDate(input.getDate());
-          return activityRepository.save(activity);
-      }
-  }
+//  @PutMapping("{id}")
+//  public Activity update(@PathVariable Long id, @RequestBody Activity input) {
+//      Activity activity = activityRepository.findOne(id);
+//      if (activity == null) {
+//          return null;
+//      } else {
+//          activity.setText(input.getText());
+//          activity.setTags(input.getTags());
+//          activity.setTitle(input.getTitle());
+//          activity.setDate(input.getDate());
+//          return activityRepository.save(activity);
+//      }
+//  }
 
 }

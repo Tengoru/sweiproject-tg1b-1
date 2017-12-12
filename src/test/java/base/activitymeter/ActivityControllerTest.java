@@ -37,12 +37,13 @@ public class ActivityControllerTest {
     String testActivity3 = "{\"text\":\"text3\",\"tags\":\"tag3\",\"title\":\"title3\",\"date\":\"date3\"}";
     String testActivity4 = "{\"text\":\"text4\",\"tags\":\"tag1\",\"title\":\"title4\",\"date\":\"date4\"}";
     String testActivity5 = "{\"text\":\"text1\",\"tags\":\"tag1\",\"title\":\"title1\",\"date\":\"date1\"}";
-    String testActivity6 = "{\"text\":\"text5\",\"tags\":\"tag1\",\"title\":\"title5\",\"date\":\"date5\"}";
-    String testTitle = "activity";
-    String testTags = "YIPPIE";
-    String testText = "Max was here!";
-    String testDate = "heute";
-    String idTemplate ="{\"id\":";
+    //String testActivity6 = "{\"text\":\"text5\",\"tags\":\"tag1\",\"title\":\"title5\",\"date\":\"date5\"}";
+    private String testTitle = "activity";
+    private String testTags = "YIPPIE";
+    private String testText = "Max was here!";
+    private String testDate = "heute";
+    private String idTemplate ="{\"id\":";
+
     @Autowired
     private MockMvc mockMvc;
 
@@ -55,6 +56,15 @@ public class ActivityControllerTest {
         SUT.setDate(want);
         String have = SUT.getDate();
         assertEquals(want, have);
+    }
+    @Test
+    public void testSetId() throws Exception {
+        Activity SUT = new Activity(testTitle,testText,testTags,testDate);
+
+        Long want = (long)5;
+        SUT.setId(want);
+        Long have = SUT.getId();
+        assertEquals(want,have);
     }
 
     @Test
@@ -142,6 +152,29 @@ public class ActivityControllerTest {
         mockMvc.perform(delete("/activity/" + id1));
 
     }
+
+    @Test
+    public void getActivityByIdTest() throws Exception {
+
+        MvcResult response = this.mockMvc.perform(post("/activity")
+                .content(testActivity1)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+                .andReturn();
+
+        String content = response.getResponse().getContentAsString();
+        JSONObject obj = new JSONObject(content);
+        int id1 = obj.getInt("id");
+
+
+        this.mockMvc.perform(get("/activity/"+id1)).andDo(print()).andExpect(status().isOk());
+
+
+        mockMvc.perform(delete("/activity/" + id1));
+
+    }
+
+
 
     @Test
     public void postManyTest() throws Exception {
