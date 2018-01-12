@@ -35,18 +35,18 @@ public class ActivityController {
       activityRepository.delete(id);
   }
 
-//  @PutMapping("{id}")
-//  public Activity update(@PathVariable Long id, @RequestBody Activity input) {
-//      Activity activity = activityRepository.findOne(id);
-//      if (activity == null) {
-//          return null;
-//      } else {
-//          activity.setText(input.getText());
-//          activity.setTags(input.getTags());
-//          activity.setTitle(input.getTitle());
-//          activity.setDate(input.getDate());
-//          return activityRepository.save(activity);
-//      }
-//  }
+  @PutMapping("{id}")
+  public Activity update(@PathVariable Long id, @RequestBody Activity input) {
+      Activity activity = activityRepository.findOne(id);
+      if (activity == null) {
+          return null;
+      } else {
+          activity.setText(input.getText());
+          activity.setTags(input.getTags());
+          activity.setTitle(input.getTitle());
+          activity.setDate(input.getDate());
+          return activityRepository.save(activity);
+      }
+  }
 
 }
