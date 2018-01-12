@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="ActivityMeterApp">
 <head>
-<title>ActivityMeterApp</title>
+<title style="color: blue">ActivityMeterApp</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -24,28 +24,29 @@
 
 <script src="./app.js"></script>
 </head>
-<body>
+<body style="background-color: black">
 	<div ng-controller="ActivityCtrl">
-		<h3 style="color:green">Activities:</h3>
+		<h2 style="color:blue;text-align: center" >Activities between CalPoly and MUAS</h2>
+		<center>
 		<table class="mdl-data-table">
 			<tr>
-				<td class="mdl-data-table__cell--non-numeric"><h5 style="color:green">Title</h5></td>
-				<td class="mdl-data-table__cell--non-numeric"><h5>Text</h5></td>
-				<td class="mdl-data-table__cell--non-numeric"><h5 style="color:lightskyblue">Tags</h5></td>
-				<td class="mdl-data-table__cell--non-numeric"><h5>Date</h5></td>
+				<td class="mdl-data-table__cell--non-numeric"><h5 style="color:blue">Title</h5></td>
+				<td class="mdl-data-table__cell--non-numeric"><h5 style="color:blue">Text</h5></td>
+				<td class="mdl-data-table__cell--non-numeric"><h5 style="color:blue">Tags</h5></td>
+				<td class="mdl-data-table__cell--non-numeric"><h5 style="color:blue">Date</h5></td>
+				<td class="mdl-data-table__cell--non-numeric" style="color:blue">
+					Tag: <input ng-model="tag" size="30" style="background-color:lightgray" /> </td>
 				<td class="mdl-data-table__cell--non-numeric">
-					Tag: <input ng-model="tag" size="30" style="background-color:lightskyblue" /> </td>
+					<button class="mdl-button" ng-click="filter()" style="color:blue">filter Activity</button></td>
 				<td class="mdl-data-table__cell--non-numeric">
-					<button class="mdl-button" ng-click="filter()">filter Activity</button></td>
-				<td class="mdl-data-table__cell--non-numeric">
-					<button class="mdl-button" ng-click="add()">add Activity</button></td>
+					<button class="mdl-button" ng-click="add()" style="color:blue" >add Activity</button></td>
 			</tr>
 			<tr ng-repeat="activity in activities">
-				<td class="mdl-data-table__cell--non-numeric" style="color:green">{{activity.title}}</td>
+				<td class="mdl-data-table__cell--non-numeric" >{{activity.title}}</td>
 				<td class="mdl-data-table__cell--non-numeric">{{activity.text}}</td>
-				<td class="mdl-data-table__cell--non-numeric" style="color:lightskyblue">{{activity.tags}}</td>
+				<td class="mdl-data-table__cell--non-numeric" >{{activity.tags}}</td>
 				<td class="mdl-data-table__cell--non-numeric">{{activity.date}}</td>
-				<td class="mdl-data-table__cell--non-numeric">&nbsp;</td>
+				<!--<td class="mdl-data-table__cell--non-numeric">&nbsp;</td>-->
 				<td class="mdl-data-table__cell--non-numeric">
 					<button class="mdl-button" ng-click="edit(activity)">edit</button></td>
 				<td class="mdl-data-table__cell--non-numeric">
@@ -53,7 +54,7 @@
 				<td class="mdl-data-table__cell--non-numeric">
 					<button class="mdl-button" ng-click="details(activity)">Details</button></td>
 			</tr>
-		</table>
+		</table> </center>
 	</div>
 </body>
 </html>
