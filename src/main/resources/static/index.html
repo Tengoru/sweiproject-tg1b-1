@@ -30,9 +30,9 @@
 		<table class="mdl-data-table">
 			<tr>
 				<td class="mdl-data-table__cell--non-numeric"><h5 style="color:green">Title</h5></td>
-				<!--<td class="mdl-data-table__cell--non-numeric"><h5>Text</h5></td>!-->
+				<td class="mdl-data-table__cell--non-numeric"><h5>Text</h5></td>
 				<td class="mdl-data-table__cell--non-numeric"><h5 style="color:lightskyblue">Tags</h5></td>
-				<!--<td class="mdl-data-table__cell--non-numeric"><h5>Date</h5></td>!-->
+				<td class="mdl-data-table__cell--non-numeric"><h5>Date</h5></td>
 				<td class="mdl-data-table__cell--non-numeric">
 					Tag: <input ng-model="tag" size="30" style="background-color:lightskyblue" /> </td>
 				<td class="mdl-data-table__cell--non-numeric">
@@ -42,12 +42,12 @@
 			</tr>
 			<tr ng-repeat="activity in activities">
 				<td class="mdl-data-table__cell--non-numeric" style="color:green">{{activity.title}}</td>
-				<!--<td class="mdl-data-table__cell--non-numeric">{{activity.text}}</td>!-->
+				<td class="mdl-data-table__cell--non-numeric">{{activity.text}}</td>
 				<td class="mdl-data-table__cell--non-numeric" style="color:lightskyblue">{{activity.tags}}</td>
-				<!--<td class="mdl-data-table__cell--non-numeric">{{activity.date}}</td>!-->
+				<td class="mdl-data-table__cell--non-numeric">{{activity.date}}</td>
 				<td class="mdl-data-table__cell--non-numeric">&nbsp;</td>
 				<td class="mdl-data-table__cell--non-numeric">
-					<!--<button class="mdl-button" ng-click="edit(activity)">edit</button></td>!-->
+					<button class="mdl-button" ng-click="edit(activity)">edit</button></td>
 				<td class="mdl-data-table__cell--non-numeric">
 					<button class="mdl-button" ng-click="delete(activity)">delete</button></td>
 				<td class="mdl-data-table__cell--non-numeric">
