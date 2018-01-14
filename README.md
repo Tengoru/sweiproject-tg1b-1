@@ -1,8 +1,7 @@
 # Welcome to the blumenkohl
 
 The deployed application is available at: https://blumenkohl.herokuapp.com/<br>
-
-The current deployed application in **develop** state is available at: https://eam-dev.herokuapp.com/
+The current deployed application in **develop** state is available at: https://sweihm.github.io/sweiproject-tg1b-1/
 
 Current Build States:
 
