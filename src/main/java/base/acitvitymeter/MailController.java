@@ -67,7 +67,7 @@ public class MailController {
             System.out.println("Response: " + t.getLastServerResponse());
             t.close();
         } catch (Exception e){
-            System.out.println("mails senden ging nich");
+            System.out.println("mails senden nicht möglich");
             System.out.println(e);
         }
     }

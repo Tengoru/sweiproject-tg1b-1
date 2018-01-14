@@ -63,7 +63,7 @@ app.controller('VerifyEmailCtrl', function($scope, $http, dialog){
 	$scope.save = function() {
 		var postRequest = {
 			method : 'POST',
-			url: base_url + '/email',
+			url: 'activity/' + 'email',
 			data: {
 				email: $scope.email
 			}
@@ -101,11 +101,11 @@ app.controller('ActivityCtrl', function ($scope, $http, $dialog) {
 
   	var addMailOptions = {
   		controller: 'VerifyEmailCtrl',
-		tempateUrl: './getVerificationCode.html'
+		templateUrl: './getVerificationCode.html'
 
 	};
   	$scope.verifyEmail = function(){
-  		$dialog.dialog(angular.extend(addMailOptions,{})).open().then(function (){
+  		$dialog.dialog(angular.extend(addMailOptions, {})).open().then(function (){
             loadActivities($scope, $http);
         }) ;
 	}
@@ -166,7 +166,8 @@ app.controller('AddActivityCtrl', function($scope, $http, dialog){
   				tags: $scope.activity.tags,
   				title: $scope.activity.title,
   				date: $scope.activity.date,
-				mail: $scope.activity.email
+
+
 			  }
 		};
 
