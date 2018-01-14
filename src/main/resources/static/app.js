@@ -99,6 +99,17 @@ app.controller('ActivityCtrl', function ($scope, $http, $dialog) {
         }) ;
   	};
 
+  	var addMailOptions = {
+  		controller: 'VerifyEmailCtrl',
+		tempateUrl: './getVerificationCode.html'
+
+	};
+  	$scope.verifyEmail = function(){
+  		$dialog.dialog(angular.extend(addMailOptions,{})).open().then(function (){
+            loadActivities($scope, $http);
+        }) ;
+	}
+
   	var detailsDialogOptions = {
         	controller: 'DetailActivityCtrl',
         	templateUrl: './activityDetail.html'
@@ -154,7 +165,8 @@ app.controller('AddActivityCtrl', function($scope, $http, dialog){
   				text: $scope.activity.text,
   				tags: $scope.activity.tags,
   				title: $scope.activity.title,
-  				date: $scope.activity.date
+  				date: $scope.activity.date,
+				mail: $scope.activity.email
 			  }
 		};
 
