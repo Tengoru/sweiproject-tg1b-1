@@ -21,6 +21,7 @@ var app = angular.module('ActivityMeterApp', ['ui.bootstrap']);
           			 $scope.activities = response.data;
        		});
        	}
+
        	function loadFilteredActivities ($scope, $http, tag) {
 			$http({
                 method: 'GET',
@@ -58,6 +59,29 @@ var app = angular.module('ActivityMeterApp', ['ui.bootstrap']);
 
 
 
+app.controller('VerifyEmailCtrl', function($scope, $http, dialog){
+	$scope.save = function() {
+		var postRequest = {
+			method : 'POST',
+			url: base_url + '/email',
+			data: {
+				email: $scope.email
+			}
+		}
+
+		$http(postRequest).then(function (response) {
+			if (response.data["msg"] != "ok") {
+				alert("E-Mail verification error: " + response.data["msg"]);
+			}
+		}).then(function () {
+			$scope.close();
+		});
+	};
+
+	$scope.close = function(){;
+		dialog.close(undefined);
+	};
+});
 
 app.controller('ActivityCtrl', function ($scope, $http, $dialog) {
 
