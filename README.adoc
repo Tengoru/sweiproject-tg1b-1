@@ -1,94 +1,19 @@
-Beispielprojekt Activity Meter
-==============================
+# Welcome to the EAM project
 
-This guide is based on a "hello world" link:/understanding/REST[RESTful web service] with Spring.
+The deployed application is available at: https://tg2b-7.herokuapp.com/<br>
+The current deployed application in **develop** state is available at: https://eam-dev.herokuapp.com/
 
-== What you'll build
+Current Build States:
 
-You'll build a service that will accept CRUD (HTTP POST, HTTP GET, HTTP PUT, HTTP DELETE) requests at:
+|branch|state|
+|------|:-------------|
+|[master](https://github.com/sweIhm/sweiproject-tg2b-7/tree/master)|[![Build Status](https://travis-ci.org/sweIhm/sweiproject-tg2b-7.svg?branch=master)](https://travis-ci.org/sweIhm/sweiproject-tg2b-7)
+|[develop](https://github.com/sweIhm/sweiproject-tg2b-7/tree/develop)|[![Build Status](https://travis-ci.org/sweIhm/sweiproject-tg2b-7.svg?branch=develop)](https://travis-ci.org/sweIhm/sweiproject-tg2b-7)
+
+-----
+For more information have a look at the [Projekt-Wiki](https://github.com/sweIhm/sweiproject-tg2b-7/wiki).
+
+*This repository is a fork of [gs-rest-service](https://github.com/spring-guides/gs-rest-service). 
+The original content of the README is available [here](https://github.com/sweIhm/sweiproject-tg2b-7/blob/master/doc/archive/README.adoc).*
 
 ----
-http://localhost:8080/activity
-----
-
-and respond with a link:/understanding/JSON[JSON] representation of an activity (title, text, tags) or a list of activities.
-
-== What you'll need
-
-:java_version: 1.8
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/prereq_editor_jdk_buildtools.adoc[]
-
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/how_to_complete_this_guide.adoc[]
-
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/hide-show-gradle.adoc[]
-
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/hide-show-maven.adoc[]
-
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/hide-show-sts.adoc[]
-
-
-== Create a resource controller
-
-In Spring's approach to building RESTful web services, HTTP requests are handled by a controller. These components are easily identified by the http://docs.spring.io/spring/docs/{spring_version}/javadoc-api/org/springframework/web/bind/annotation/RestController.html[`@RestController`] annotation, and the `ActivityController` below handles `GET` requests for `/activity` by returning a new instance of the `Activity` class:
-
-`src/main/java/hello/ActivityController.java`
-[source,java]
-----
-include::complete/src/main/java/base.activitymeter/ActivityController.java[]
-----
-
-
-The `@RequestMapping` annotation ensures that HTTP requests to `/activity` are mapped to the `activity()` method.
-
-A key difference between a traditional MVC controller and the RESTful web service controller above is the way that the HTTP response body is created. Rather than relying on a link:/understanding/view-templates[view technology] to perform server-side rendering of the activity data to HTML, this RESTful web service controller simply populates and returns an `Activity` object. The object data will be written directly to the HTTP response as JSON.
-
-This code uses Spring 4's new http://docs.spring.io/spring/docs/{spring_version}/javadoc-api/org/springframework/web/bind/annotation/RestController.html[`@RestController`] annotation, which marks the class as a controller where every method returns a domain object instead of a view. It's shorthand for `@Controller` and `@ResponseBody` rolled together.
-
-The `Activity` object must be converted to JSON. Thanks to Spring's HTTP message converter support, you don't need to do this conversion manually. Because http://wiki.fasterxml.com/JacksonHome[Jackson 2] is on the classpath, Spring's http://docs.spring.io/spring/docs/{spring_version}/javadoc-api/org/springframework/http/converter/json/MappingJackson2HttpMessageConverter.html[`MappingJackson2HttpMessageConverter`] is automatically chosen to convert the `Greeting` instance to JSON.
-
-
-== Make the application executable
-
-Although it is possible to package this service as a traditional link:/understanding/WAR[WAR] file for deployment to an external application server, the simpler approach demonstrated below creates a standalone application. You package everything in a single, executable JAR file, driven by a good old Java `main()` method. Along the way, you use Spring's support for embedding the link:/understanding/Tomcat[Tomcat] servlet container as the HTTP runtime, instead of deploying to an external instance.
-
-
-`src/main/java/hello/Application.java`
-[source,java]
-----
-include::complete/src/main/java/base/Application.java[]
-----
-
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/spring-boot-application.adoc[]
-
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/build_an_executable_jar_subhead.adoc[]
-
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/build_an_executable_jar_with_both.adoc[]
-
-
-Logging output is displayed. The service should be up and running within a few seconds.
-
-
-
-== See Also
-
-The following guides may also be helpful:
-
-* https://spring.io/guides/gs/accessing-gemfire-data-rest/[Accessing GemFire Data with REST]
-* https://spring.io/guides/gs/accessing-mongodb-data-rest/[Accessing MongoDB Data with REST]
-* https://spring.io/guides/gs/accessing-data-mysql/[Accessing data with MySQL]
-* https://spring.io/guides/gs/accessing-data-rest/[Accessing JPA Data with REST]
-* https://spring.io/guides/gs/accessing-neo4j-data-rest/[Accessing Neo4j Data with REST]
-* https://spring.io/guides/gs/consuming-rest/[Consuming a RESTful Web Service]
-* https://spring.io/guides/gs/consuming-rest-angularjs/[Consuming a RESTful Web Service with AngularJS]
-* https://spring.io/guides/gs/consuming-rest-jquery/[Consuming a RESTful Web Service with jQuery]
-* https://spring.io/guides/gs/consuming-rest-restjs/[Consuming a RESTful Web Service with rest.js]
-* https://spring.io/guides/gs/securing-web/[Securing a Web Application]
-* https://spring.io/guides/tutorials/bookmarks/[Building REST services with Spring]
-* https://spring.io/guides/tutorials/react-and-spring-data-rest/[React.js and Spring Data REST]
-* https://spring.io/guides/gs/spring-boot/[Building an Application with Spring Boot]
-* https://spring.io/guides/gs/testing-restdocs/[Creating API Documentation with Restdocs]
-* https://spring.io/guides/gs/rest-service-cors/[Enabling Cross Origin Requests for a RESTful Web Service]
-* https://spring.io/guides/gs/rest-hateoas/[Building a Hypermedia-Driven RESTful Web Service]
-* https://spring.io/guides/gs/circuit-breaker/[Circuit Breaker]
-
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/footer.adoc[]
