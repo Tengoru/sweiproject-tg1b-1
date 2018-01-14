@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <h1>Get Code for Verification</h1>
+</div>
+<div class="modal-body">
+    <p>Please your MUAS or Calpoly E-Mail-Adress:</p>
+    <p>
+        E-Mail: <input ng-model="EmailAddress" size="40"/>
+    </p>
+    <p> (has to end on hm.edu or calpoly.edu!)</p>
+
+</div>
+<div class="modal-footer">
+    <button ng-click="sendEmail(EmailAddress)">Send Code</button>
+    <button ng-click="close()">Close</button>
+</div>
