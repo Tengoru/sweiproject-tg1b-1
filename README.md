@@ -20,7 +20,7 @@ The current deployed application in **develop** state is available at: https://s
 
 <h1>Anwendungsfälle zum Projektstart</h1> 
 
-<img src="https://github.com/sweIhm/sweiproject-tg1b-1/blob/master/Dokumente/Anwendungsfaelle.png">
+<img src="https://raw.githubusercontent.com/sweIhm/sweiproject-tg1b-1/master/Dokumente/Anwendungsfaelle.png">
 
 
 
