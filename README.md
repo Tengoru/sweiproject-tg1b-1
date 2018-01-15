@@ -1,20 +1,26 @@
 
-# sweiproject-tg2a-5
-sweiproject-tg2a-5 created by GitHub Classroom
 
-https://sweihm.github.io/sweiproject-tg2a-5/
+
+
+
+
+
+# Welcome to the blumenkohl
+
+The deployed application is available at: https://blumenkohl.herokuapp.com/<br>
+The current deployed application in **develop** state is available at: https://sweihm.github.io/sweiproject-tg1b-1/
 
 <h1>Fachklassendiagramm zum Projektstart</h1>
 
-<img src="https://github.com/sweIhm/sweiproject-tg2a-5/blob/master/Uebungen_Praktikum_Teil1/Projektarbeit%20vom%2003.11.2017/Fachklassendiagramm.jpg?raw=true">
+<img src="https://github.com/sweIhm/sweiproject-tg1b-1/blob/master/Dokumente/Analyse-Fachklassenmodell15.11.png">
 
 <h1>Fachklassendiagramm nach Abschluss des Projekts</h1>
 
-<img src="https://github.com/sweIhm/sweiproject-tg2a-5/blob/master/Uebungen_Praktikum_Teil1/Projektarbeit%20vom%2003.11.2017/FachklassendiagrammNeu.jpg?raw=true">
+<img src="">
 
-<h1>Finale Optik der Anwendung</h1> 
+<h1>Anwendungsfälle zum Projektstart</h1> 
 
-<img src="https://github.com/sweIhm/sweiproject-tg2a-5/blob/master/Uebungen_Praktikum_Teil1/Screenshot.jpg?raw=true">
+<img src="https://github.com/sweIhm/sweiproject-tg1b-1/blob/master/Dokumente/Anwendungsfaelle.png">
 
 
 
@@ -26,13 +32,6 @@ Gut: Aufgaben gut verteilbar durch github Issues
 Gut, aber ausbaufähig: Kommunikation über Issues kann man noch besser nutzen, an sich gute Plattform für Kommunikation unter den Entwicklern
 
 
-
-
-
-# Welcome to the blumenkohl
-
-The deployed application is available at: https://blumenkohl.herokuapp.com/<br>
-The current deployed application in **develop** state is available at: https://sweihm.github.io/sweiproject-tg1b-1/
 
 Current Build States:
 
