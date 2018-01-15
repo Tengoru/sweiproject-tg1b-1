@@ -1,68 +1,29 @@
 
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/sweiproject-example/assets/css/style.css?v=9883e83145af924ef1e16f9756937f34b52ecdfd">
+# sweiproject-tg2a-5
+sweiproject-tg2a-5 created by GitHub Classroom
 
-<!-- Begin Jekyll SEO tag v2.3.0 -->
-<title>Demoprojekt sweiproject-example | sweiproject-example</title>
-<meta property="og:title" content="Demoprojekt sweiproject-example" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="created by GitHub Classroom" />
-<meta property="og:description" content="created by GitHub Classroom" />
-<link rel="canonical" href="https://sweihm.github.io/sweiproject-example/" />
-<meta property="og:url" content="https://sweihm.github.io/sweiproject-example/" />
-<meta property="og:site_name" content="sweiproject-example" />
-<script type="application/ld+json">
-{"name":"sweiproject-example","description":"created by GitHub Classroom","author":null,"@type":"WebSite","url":"https://sweihm.github.io/sweiproject-example/","image":null,"publisher":null,"headline":"Demoprojekt sweiproject-example","dateModified":null,"datePublished":null,"sameAs":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
+https://sweihm.github.io/sweiproject-tg2a-5/
 
-  </head>
+<h1>Fachklassendiagramm zum Projektstart</h1>
 
-  <body>
+<img src="https://github.com/sweIhm/sweiproject-tg2a-5/blob/master/Uebungen_Praktikum_Teil1/Projektarbeit%20vom%2003.11.2017/Fachklassendiagramm.jpg?raw=true">
 
-    <header>
-      <div class="container">
-        <h1>sweiproject-example</h1>
-        <h2>created by GitHub Classroom</h2>
+<h1>Fachklassendiagramm nach Abschluss des Projekts</h1>
 
-        <section id="downloads">
-          
-          <a href="https://github.com/sweIhm/sweiproject-example" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-        </section>
-      </div>
-    </header>
+<img src="https://github.com/sweIhm/sweiproject-tg2a-5/blob/master/Uebungen_Praktikum_Teil1/Projektarbeit%20vom%2003.11.2017/FachklassendiagrammNeu.jpg?raw=true">
 
-    <div class="container">
-      <section id="main_content">
-        
-<h1 id="demoprojekt-sweiproject-example">Demoprojekt sweiproject-example</h1>
+<h1>Finale Optik der Anwendung</h1> 
 
-<p>Ein Beispielprojekt als Grundlage für ein ‘International Activity Meter’.</p>
-
-<p><a href="https://activityexample.herokuapp.com/">WebApp: https://activityexample.herokuapp.com/</a></p>
-
-<h2 id="systemarchitektur">Systemarchitektur</h2>
-<p><img src="images/SystemkontextActivityMeter.png" alt="Systemkontext" class="inline" /></p>
-<h2 id="anwendungsfalldiagramm">Anwendungsfalldiagramm</h2>
-<p><img src="images/ActivityMeterUseCases.png" alt="Use Cases" class="inline" /></p>
-<h2 id="abläufe">Abläufe</h2>
-<p><img src="images/ActivityMeterActivityDiagram.png" alt="Abläufe" class="inline" /></p>
-
-<h2 id="sonstiges">Sonstiges</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-      </section>
-    </div>
-
-    
-  </body>
-</html>
+<img src="https://github.com/sweIhm/sweiproject-tg2a-5/blob/master/Uebungen_Praktikum_Teil1/Screenshot.jpg?raw=true">
 
 
+
+<h1> Erfahrungen aus dem Projekt: </h1>
+
+Gut: Aufgaben gut verteilbar durch github Issues
+     Whatsappgruppe sehr gut für Echtzeit-Kommunikation
+
+Gut, aber ausbaufähig: Kommunikation über Issues kann man noch besser nutzen, an sich gute Plattform für Kommunikation unter den Entwicklern
 
 
 
