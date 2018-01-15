@@ -78,7 +78,8 @@
 				<activatedProperties>dev</activatedProperties>
 				<sonar.coverage.exclusions>src/main/base/activitymeter/MailController.java</sonar.coverage.exclusions>
 				<sonar.coverage.exclusions>src/main/base/activitymeter/Mail.java</sonar.coverage.exclusions>
-				<sonar.coverage.exclusions>src/main/base/activitymeter/MailRepository.java</sonar.coverage.exclusions>
+
+                <sonar.coverage.exclusions>src/main/base/activitymeter/MailRepository.java</sonar.coverage.exclusions>
 			</properties>
 		</profile>
 		<profile>
