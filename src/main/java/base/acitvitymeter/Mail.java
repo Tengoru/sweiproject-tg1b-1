@@ -28,7 +28,6 @@ public class Mail {
     private boolean verified;
     private String secretKey;
 
-    Mail() {}
 
     Mail(String mail, boolean verified, String secret) {
         this.email = mail;
@@ -61,5 +60,9 @@ public class Mail {
 
     public void setVerified(boolean verified) {
         this.verified = verified;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
