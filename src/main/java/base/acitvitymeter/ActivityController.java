@@ -11,6 +11,8 @@ public class ActivityController {
   
   @Autowired
   private ActivityRepository activityRepository;
+  @Autowired
+  private MailRepository mailRepository;
 
 
   @GetMapping
@@ -27,8 +29,15 @@ public class ActivityController {
 
   @PostMapping
   public Activity create(@RequestBody Activity input) {
-      return activityRepository.save(new Activity(input.getText(), input.getTags(), input.getTitle(),input.getDate()));
+      input.getVerificationCode();
+      ArrayList<Mail> mailList = new ArrayList<>();
+      mailRepository.findAll().forEach(eMail -> mailList.add(eMail));
+      boolean codeCorrect = mailList.stream().map(email -> email.getSecretKey()).anyMatch(element ->element.equals(input.getVerificationCode()));
+      if(codeCorrect)
+        return activityRepository.save(new Activity(input.getText(), input.getTags(), input.getTitle(),input.getDate(),input.getVerificationCode()));
+      return null;
   }
+
 
   @DeleteMapping("{id}")
   public void delete(@PathVariable Long id) {

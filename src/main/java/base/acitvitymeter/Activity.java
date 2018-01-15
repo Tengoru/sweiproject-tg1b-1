@@ -15,14 +15,16 @@ public class Activity {
     private String tags;
     private String title;
     private String date;
+    private String verificationCode;
 
     public Activity (){};
 
-    public Activity(String text, String tags, String title,String date) {
+    public Activity(String text, String tags, String title,String date,String verificationCode) {
         this.text = text;
         this.tags = tags;
         this.title = title;
         this.date = date;
+        this.verificationCode = verificationCode;
 
 
         
@@ -66,5 +68,9 @@ public class Activity {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getVerificationCode() {
+        return verificationCode;
     }
 }

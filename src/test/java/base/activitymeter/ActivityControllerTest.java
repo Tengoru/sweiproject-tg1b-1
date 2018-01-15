@@ -32,17 +32,18 @@ public class ActivityControllerTest {
 
     //String jsonActivity1 = "{\"title\":\"Test\", \"start\":\"12.12.2012\", \"end\":\"14.12.2012\", \"category\":\"cat\", \"department\":\"Fakultät für Design\" ,\"tags\":\"tag\", \"text\":\"Ich bin ein Test\"}";
 
-    String testActivity1 = "{\"text\":\"text1\",\"tags\":\"tag1\",\"title\":\"title1\",\"date\":\"date1\"}";
-    String testActivity2 = "{\"text\":\"text2\",\"tags\":\"tag2\",\"title\":\"title2\",\"date\":\"date2\"}";
-    String testActivity3 = "{\"text\":\"text3\",\"tags\":\"tag3\",\"title\":\"title3\",\"date\":\"date3\"}";
-    String testActivity4 = "{\"text\":\"text4\",\"tags\":\"tag1\",\"title\":\"title4\",\"date\":\"date4\"}";
-    String testActivity5 = "{\"text\":\"text1\",\"tags\":\"tag1\",\"title\":\"title1\",\"date\":\"date1\"}";
+    String testActivity1 = "{\"text\":\"text1\",\"tags\":\"tag1\",\"title\":\"title1\",\"date\":\"date1\",\"secretKey\":\"secretKey1\"}";
+    String testActivity2 = "{\"text\":\"text2\",\"tags\":\"tag2\",\"title\":\"title2\",\"date\":\"date2\",\"secretKey\":\"secretKey2\"}";
+    String testActivity3 = "{\"text\":\"text3\",\"tags\":\"tag3\",\"title\":\"title3\",\"date\":\"date3\",\"secretKey\":\"secretKey3\"}";
+    String testActivity4 = "{\"text\":\"text4\",\"tags\":\"tag1\",\"title\":\"title4\",\"date\":\"date4\",\"secretKey\":\"secretKey4\"}";
+    String testActivity5 = "{\"text\":\"text1\",\"tags\":\"tag1\",\"title\":\"title1\",\"date\":\"date1\",\"secretKey\":\"secretKey5\"}";
     //String testActivity6 = "{\"text\":\"text5\",\"tags\":\"tag1\",\"title\":\"title5\",\"date\":\"date5\"}";
     private String testTitle = "activity";
     private String testTags = "YIPPIE";
     private String testText = "Max was here!";
     private String testDate = "heute";
     private String idTemplate ="{\"id\":";
+    private String testKey ="1234";
 
     @Autowired
     private MockMvc mockMvc;
@@ -50,7 +51,7 @@ public class ActivityControllerTest {
     @Test
     public void testSetDate() throws Exception {
 
-        Activity SUT = new Activity(testTitle,testText,testTags,testDate);
+        Activity SUT = new Activity(testTitle,testText,testTags,testDate,testKey);
 
         String want = "morgen";
         SUT.setDate(want);
@@ -59,7 +60,7 @@ public class ActivityControllerTest {
     }
     @Test
     public void testSetId() throws Exception {
-        Activity SUT = new Activity(testTitle,testText,testTags,testDate);
+        Activity SUT = new Activity(testTitle,testText,testTags,testDate,testKey);
 
         Long want = (long)5;
         SUT.setId(want);
@@ -70,7 +71,7 @@ public class ActivityControllerTest {
     @Test
     public void testSetTitle() throws Exception {
 
-        Activity SUT = new Activity(testTitle,testText,testTags,testDate);
+        Activity SUT = new Activity(testTitle,testText,testTags,testDate,testKey);
 
         String want = "Aktivity2";
         SUT.setTitle(want);
@@ -81,7 +82,7 @@ public class ActivityControllerTest {
     @Test
     public void testSetText() throws Exception {
 
-        Activity SUT = new Activity(testTitle,testText,testTags,testDate);
+        Activity SUT = new Activity(testTitle,testText,testTags,testDate,testKey);
 
         String want = "Caro was here";
         SUT.setText(want);
@@ -92,7 +93,7 @@ public class ActivityControllerTest {
     @Test
     public void testSetTag() throws Exception {
 
-        Activity SUT = new Activity(testTitle,testText,testTags,testDate);
+        Activity SUT = new Activity(testTitle,testText,testTags,testDate,testKey);
 
         String want = "Juhuuuuu";
         SUT.setTags(want);
@@ -103,7 +104,7 @@ public class ActivityControllerTest {
     @Test
     public void testSetTagTwice() throws Exception {
 
-        Activity SUT = new Activity(testTitle,testText,testTags,testDate);
+        Activity SUT = new Activity(testTitle,testText,testTags,testDate,testKey);
 
         String want = "Juhuuuuu";
         String inBetween = "OhNein";

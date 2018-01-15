@@ -4,12 +4,12 @@
 <div class="modal-body">
     <p>Please enter your MUAS or Calpoly E-Mail-Adress:</p>
     <p>
-        E-Mail: <input ng-model="EmailAddress" size="40" pattern="[a-z0-9._%+-]+@(hm.edu|calpoly.edu)"/>
+        E-Mail: <input ng-model="email.email" size="40" pattern="[a-z0-9._%+-]+@(hm.edu|calpoly.edu)"/>
     </p>
     <p> (has to end on hm.edu or calpoly.edu!)</p>
 
 </div>
 <div class="modal-footer">
-    <button ng-click="sendEmail(EmailAddress)">Send Code</button>
+    <button ng-click="send()">Send Code</button>
     <button ng-click="close()">Close</button>
 </div>

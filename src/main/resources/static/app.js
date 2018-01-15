@@ -60,14 +60,14 @@ var app = angular.module('ActivityMeterApp', ['ui.bootstrap']);
 
 
 app.controller('VerifyEmailCtrl', function($scope, $http, dialog){
-	$scope.save = function() {
+	$scope.send = function() {
 		var postRequest = {
 			method : 'POST',
-			url: 'activity/' + 'email',
+			url:  'email',
 			data: {
-				email: $scope.email
+				email: $scope.email.email
 			}
-		}
+		};
 
 		$http(postRequest).then(function (response) {
 			if (response.data["msg"] != "ok") {
@@ -78,7 +78,7 @@ app.controller('VerifyEmailCtrl', function($scope, $http, dialog){
 		});
 	};
 
-	$scope.close = function(){;
+	$scope.close = function(){
 		dialog.close(undefined);
 	};
 });
@@ -166,11 +166,9 @@ app.controller('AddActivityCtrl', function($scope, $http, dialog){
   				tags: $scope.activity.tags,
   				title: $scope.activity.title,
   				date: $scope.activity.date,
-
-
-			  }
+            verificationCode: $scope.activity.verificationCode
+		}
 		};
-
   		$http(postRequest).then(function (response) {
   		    $scope.activities = response.data;
   		}).then(function () {

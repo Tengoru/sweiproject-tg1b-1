@@ -57,10 +57,11 @@
 		</dependency>
 
 		<!-- Java Mail API -->
+
+		<!-- E mail-->
 		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.4.3</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 
 	</dependencies>
@@ -75,7 +76,9 @@
 
 			<properties>
 				<activatedProperties>dev</activatedProperties>
-				<sonar.coverage.exclusions>src/main/java/iam/EmailController.java</sonar.coverage.exclusions>
+				<sonar.coverage.exclusions>src/main/base/activitymeter/MailController.java</sonar.coverage.exclusions>
+				<sonar.coverage.exclusions>src/main/base/activitymeter/Mail.java</sonar.coverage.exclusions>
+				<sonar.coverage.exclusions>src/main/base/activitymeter/MailRepository.java</sonar.coverage.exclusions>
 			</properties>
 		</profile>
 		<profile>
