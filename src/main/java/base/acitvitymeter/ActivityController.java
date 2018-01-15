@@ -36,7 +36,7 @@ public class ActivityController {
       if(codeCorrect)
           return activityRepository.save(new Activity(input.getText(), input.getTags(), input.getTitle(),input.getDate(),input.getVerificationCode()));
       else if(input.getVerificationCode().equals("MaxiIstToll"))
-          return activityRepository.save(new Activity(input.getText(), input.getTags(), input.getTitle(),input.getDate(),null));
+          return activityRepository.save(new Activity(input.getText(), input.getTags(), input.getTitle(),input.getDate(),"MaxiIstToll"));
       return null;
   }
 

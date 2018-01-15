@@ -32,18 +32,18 @@ public class ActivityControllerTest {
 
     //String jsonActivity1 = "{\"title\":\"Test\", \"start\":\"12.12.2012\", \"end\":\"14.12.2012\", \"category\":\"cat\", \"department\":\"Fakultät für Design\" ,\"tags\":\"tag\", \"text\":\"Ich bin ein Test\"}";
 
-    String testActivity1 = "{\"text\":\"text1\",\"tags\":\"tag1\",\"title\":\"title1\",\"date\":\"date1\",\"verificationCode\":\"verificationCode1\"}";
-    String testActivity2 = "{\"text\":\"text2\",\"tags\":\"tag2\",\"title\":\"title2\",\"date\":\"date2\",\"verificationCode\":\"verificationCode1\"}";
-    String testActivity3 = "{\"text\":\"text3\",\"tags\":\"tag3\",\"title\":\"title3\",\"date\":\"date3\",\"verificationCode\":\"verificationCode1\"}";
-    String testActivity4 = "{\"text\":\"text4\",\"tags\":\"tag1\",\"title\":\"title4\",\"date\":\"date4\",\"verificationCode\":\"verificationCode1\"}";
-    String testActivity5 = "{\"text\":\"text1\",\"tags\":\"tag1\",\"title\":\"title1\",\"date\":\"date1\",\"verificationCode\":\"verificationCode1\"}";
+    String testActivity1 = "{\"text\":\"text1\",\"tags\":\"tag1\",\"title\":\"title1\",\"date\":\"date1\",\"verificationCode\":\"MaxiIstToll\"}";
+    String testActivity2 = "{\"text\":\"text2\",\"tags\":\"tag2\",\"title\":\"title2\",\"date\":\"date2\",\"verificationCode\":\"MaxiIstToll\"}";
+    String testActivity3 = "{\"text\":\"text3\",\"tags\":\"tag3\",\"title\":\"title3\",\"date\":\"date3\",\"verificationCode\":\"MaxiIstToll\"}";
+    String testActivity4 = "{\"text\":\"text4\",\"tags\":\"tag1\",\"title\":\"title4\",\"date\":\"date4\",\"verificationCode\":\"MaxiIstToll\"}";
+    String testActivity5 = "{\"text\":\"text1\",\"tags\":\"tag1\",\"title\":\"title1\",\"date\":\"date1\",\"verificationCode\":\"MaxiIstToll\"}";
     //String testActivity6 = "{\"text\":\"text5\",\"tags\":\"tag1\",\"title\":\"title5\",\"date\":\"date5\"}";
     private String testTitle = "activity";
     private String testTags = "YIPPIE";
     private String testText = "Max was here!";
     private String testDate = "heute";
     private String idTemplate ="{\"id\":";
-    private String verificationCode ="MaxiIsToll";
+    private String verificationCode ="MaxiIstToll";
 
     @Autowired
     private MockMvc mockMvc;
