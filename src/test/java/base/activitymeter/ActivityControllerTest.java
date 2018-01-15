@@ -37,6 +37,7 @@ public class ActivityControllerTest {
     String testActivity3 = "{\"text\":\"text3\",\"tags\":\"tag3\",\"title\":\"title3\",\"date\":\"date3\",\"verificationCode\":\"MaxiIstToll\"}";
     String testActivity4 = "{\"text\":\"text4\",\"tags\":\"tag1\",\"title\":\"title4\",\"date\":\"date4\",\"verificationCode\":\"MaxiIstToll\"}";
     String testActivity5 = "{\"text\":\"text1\",\"tags\":\"tag1\",\"title\":\"title1\",\"date\":\"date1\",\"verificationCode\":\"MaxiIstToll\"}";
+    //String editedActivity =
     //String testActivity6 = "{\"text\":\"text5\",\"tags\":\"tag1\",\"title\":\"title5\",\"date\":\"date5\"}";
     private String testTitle = "activity";
     private String testTags = "YIPPIE";
@@ -331,6 +332,26 @@ public class ActivityControllerTest {
 
     }
 
+    @Test
+    public void editActivity() throws Exception {
+        MvcResult response1 = this.mockMvc.perform(post("/activity")
+                .content(testActivity1)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+                .andReturn();
+        String content1 =response1.getResponse().getContentAsString();
+        JSONObject obj1 = new JSONObject(content1);
+        int id1 = obj1.getInt("id");
+
+        MvcResult updatedResponse = this.mockMvc.perform(put("/activity/"+id1)
+                .content(testActivity2)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+                .andReturn();
+
+        mockMvc.perform(delete("/activity/" + id1)).andExpect(status().isOk());
+    }
+
         @Test
         public void paramGreetingShouldReturnTailoredMessage() throws Exception {
 
@@ -338,6 +359,7 @@ public class ActivityControllerTest {
                     .andDo(print()).andExpect(status().isOk())
                     .andExpect(jsonPath("$.content").value("Hello, Spring Community!"));
         }
+
 
 }
 
